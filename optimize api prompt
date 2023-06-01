@@ -1,0 +1,50 @@
+import re
+from collections import Counter
+from gensim.summarization import summarize
+
+def optimize_prompt_text(input_text, max_token_count):
+    # Perform text summarization to reduce the input text while preserving critical information
+    summarized_text = summarize(input_text, word_count=max_token_count)
+    
+    # Remove extra whitespaces and newlines from the summarized text
+    cleaned_text = re.sub(r'\s+', ' ', summarized_text).strip()
+    
+    return cleaned_text
+
+def main():
+    # Define the input text
+    input_text = """
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in urna eu purus dapibus rhoncus. Nulla nec dapibus tellus. 
+    Vestibulum a cursus risus. Donec interdum fermentum nibh sed finibus. Nulla facilisi. Fusce semper velit sed mi sagittis, 
+    id molestie orci porttitor. Integer vel ex nec ante posuere malesuada ac a tellus. Sed in vulputate lectus. 
+    Vestibulum vehicula arcu eget fringilla lacinia. Nulla non lobortis lectus. Suspendisse et tempor leo.
+    """
+
+    # Define the maximum token count for reduction
+    max_token_count = 50
+    
+    # Optimize the prompt text
+    optimized_text = optimize_prompt_text(input_text, max_token_count)
+    
+    # Print the original and optimized text
+    print("Original Text:")
+    print(input_text)
+    print("\nOptimized Text:")
+    print(optimized_text)
+
+if __name__ == '__main__':
+    main()
+######## explanation ########
+The optimize_prompt_text() function takes two arguments: input_text (the text to be optimized) and max_token_count (the maximum number of tokens to retain).
+
+Text summarization is performed using the summarize() function from the gensim.summarization module. This function uses the TextRank algorithm to generate a summary of the input text based on the maximum word count specified.
+
+The summarized text is cleaned by removing extra whitespaces and newlines using the re.sub() function and a regular expression pattern.
+
+In the main() function:
+
+The input text is defined as a multi-line string.
+The maximum token count is set to 50 as an example.
+The optimize_prompt_text() function is called with the input text and maximum token count.
+The original and optimized text are printed to the console.
+The code utilizes the gensim library to perform text summarization. You may need to install the library using pip install gensim before running the code.
