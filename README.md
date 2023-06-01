@@ -1,0 +1,2 @@
+# Optimize-Prompt-Text-for-Language-Model-API-Calls-by-
+The optimize_prompt_text() function takes two arguments: input_text (the text to be optimized) and max_token_count (the maximum number of tokens to retain).  Text summarization is performed using the summarize() function from the gensim.summarization module. This function uses the TextRank algorithm to generate a summary of the input text based on 
